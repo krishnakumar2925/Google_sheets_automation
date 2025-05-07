@@ -1,127 +1,113 @@
-Google Sheets Automation Testing
+# Google Sheets Test Automation Suite
 
-This project automates UI interactions with Google Sheets using Selenium WebDriver and integrates Google Sheets API for reading and writing data. The goal is to ensure smooth and reliable UI tests while eliminating the need for continuous login during automation by utilizing Chrome user profiles.
+This project automates functional test cases for **Google Sheets** using Selenium WebDriver, TestNG, and the Google Sheets API. It is built to demonstrate automation capability around spreadsheet manipulation such as reading, writing, editing, and validating data.
 
-Features
+---
 
-Automates Google Sheets UI operations like creating, renaming sheets, and entering data.
-Integrates Google Sheets API to directly interact with Google Sheets without the need for manual UI operations.
-Reuses logged-in Google Chrome session to avoid the need to log in every time during automation.
-Generates HTML reports using ExtentReports for detailed test results.
-Prerequisites
+## 🔧 Technologies Used
+- Java
+- TestNG
+- Selenium WebDriver
+- Google Sheets API
+- ChromeDriver
+- Extent Reports
 
-To run this project, you need the following:
+---
 
-Java: Version 8 or higher
-Maven: For dependency management
-Selenium: Web automation framework
-Google Sheets API credentials: For reading and writing data using the API
-ChromeDriver: Ensure that you have the appropriate version of chromedriver installed
-Google Chrome: For running tests in headless or full browser mode
-Project Structure
+## ✅ Automated Test Cases (8/10 Implemented)
 
-The project is organized into the following main packages:
+### Test Case 1: Verify Google Sheet loads correctly
+- Checks if the sheet URL is accessible and page title matches expectations.
 
-Levich.google_sheets.baseComponents:
+### Test Case 2: Verify data can be entered in a cell
+- Uses Google Sheets API to input text in a specific cell.
 
-	BaseTest.java: Contains the setup and teardown logic for tests.
+### Test Case 3: Verify data can be edited in a cell
+- Overwrites existing data in a cell and verifies the updated value.
 
-	DriverSingleton.java: Manages WebDriver initialization and browser setup.
+### Test Case 4: Verify data can be deleted from a cell
+- Clears the content of a specific cell using the Google Sheets API.
 
-Levich.google_sheets.pageObject:
+### Test Case 5: Verify ability to add a new row
+- Simulates appending a new row of data and confirms via the API.
 
-	GoogleSheetPage.java: Page Object class for interacting with the Google Sheets UI.
+### Test Case 6: Verify ability to add a new column
+- Adds a column programmatically and validates by checking headers.
 
-Levich.google_sheets.testCase:
+### Test Case 7: Verify data is retained after browser refresh
+- Enters data in the UI, refreshes the page, and checks persistence.
 
-	Contains test cases for verifying Google Sheets UI functionality.
+### Test Case 8: Verify unauthorized access is blocked
+- Opens the sheet URL in incognito or another profile and checks for auth error.
 
-Levich.google_sheets.utilities:
+---
 
-	googleSheetAPI.java: Integrates Google Sheets API for reading and writing data.
+## ❌ Not Yet Automated (Due to Time Constraints)
 
-	ExtentReportManager.java: Handles the generation of ExtentReports.
+### Test Case 9: Verify import of large dataset
+- Requires simulation of uploading or importing 1000+ records and validating correctness and performance.
 
-	GlobalData.properties: Stores configuration like the browser type (Chrome or Safari).
+### Test Case 10: Verify performance with large number of rows/columns
+- Needed benchmarking read/write latency and UI behavior under high load. Skipped due to time limits.
 
-Levich.google_sheets.abstractComponents:
+### Remaining Testcases
+- Refer: https://docs.google.com/spreadsheets/d/1qaAdFTbA6BoZxobzkMCagL563IAipdOlwpWPnLlyhFM/edit?usp=sharing
+---
 
-	SeleniumUtils: Handles selenium actions methods with webdriverwait.
+## 🧪 Setup Instructions
 
-Setup Instructions
+1. **Clone this repo**
+   ```bash
+   git clone [https://github.com/your-username/google-sheets-automation](https://github.com/krishnakumar2925/Google_sheets_automation).git
+   cd google-sheets-automation
+   ```
 
-1. Clone the repository:
-	git clone [https://github.com/yourusername/google-sheets-automation.git](https://github.com/krishnakumar2925/Google_sheets_automation.git)
-	cd google-sheets-automation
+2. **Install dependencies** (if using Maven)
+   ```bash
+   mvn clean install
+   ```
 
-2. Install dependencies:
-Make sure that you have Maven installed, then run the following command to install the required dependencies:
-	mvn clean install
+3. **Google Sheets API Setup**
+   - Go to [Google Developer Console](https://console.developers.google.com/)
+   - Create a project and enable **Google Sheets API**
+   - Download `client_secret.json` and place it in `src/main/java/.../utilities/`
 
-3. Set up Google Sheets API credentials:
-Go to Google Cloud Console.
-Create a new project and enable the Google Sheets API.
-Create OAuth 2.0 credentials and download the client_secret.json file.
-Place the client_secret.json file in the src/main/java/Levich/google_sheets/utilities/ directory.
+4. **Run the test**
+   ```bash
+   mvn test
+   ```
 
-4. Set up Chrome Profile (optional, for avoiding login every time):
-To reuse the logged-in session for Google Sheets:
-Create a new directory named ChromeProfile in your project’s root directory.
-Use Chrome to log in to your Google account and then navigate to Google Sheets.
-Close Chrome and use the user profile folder for automated tests.
-Note: The Chrome profile path is configured in the DriverSingleton.java file.
+---
 
-5. Configure the GlobalData.properties file:
-Set the browser you want to use (e.g., Chrome):
-browser=chrome
+## 🧩 Limitations & Production Considerations
 
-6. Run the Tests:
-You can run the tests using TestNG or Maven:
-Using Maven:
-mvn test
-Using TestNG:
-Right-click on TestNG.xml and choose Run As > TestNG Test in your IDE.
+- **Automation Tool Limitations**:
+  - Selenium cannot directly interact with Google Sheets UI elements reliably due to dynamic DOM and iframe restrictions.
+  - Addressed by integrating Google Sheets API for reliable and scalable testing.
 
-Test Cases:
+- **Non-Automated Scenarios**:
+  - Large dataset handling is complex due to sheet UI lag and API rate limits. Such cases are better validated through batch API operations and performance assertions.
 
-TC1:Verify spreadsheet can be created
+---
 
-TC2:Verify spreadsheet can be renamed
+## 📁 Project Structure
+```
+|- src
+|   |- main
+|   |   |- java
+|   |       |- GoogleSheetAPI.java
+|   |       |- GoogleSheetUtils.java
+|   |- test
+|       |- java
+|           |- SheetTests.java
+|- pom.xml
+|- README.md
+```
 
-TC3:Verify data can be entered in a cell
+---
 
-TC4:Verify data can be edited in a cell
+## 📋 Author
+**Krishnakumar Muralidharan**
 
-TC5:Verify data can be deleted from a cell
+---
 
-TC6:Verify bold formatting on a cell
-
-TC7:Verify cell background color can be changed
-
-TC8:Verify SUM formula
-
-remaining test cases are available here: https://docs.google.com/spreadsheets/d/1qaAdFTbA6BoZxobzkMCagL563IAipdOlwpWPnLlyhFM/edit?usp=sharing
-
-Reports
-
-After running tests, the ExtentReports will generate a report in the /ExtentReports folder, where you can see the detailed test execution status, including passed/failed/skipped tests.
-
-Contribution
-
-Feel free to fork the repository and submit pull requests for any improvements or new features.
-
-Limitations
-1. Limitations with Automation Tools when Accessing Google Sheets
-While automating Google Sheets with Selenium and the Google Sheets API, there are certain limitations you may encounter:
-
-Rate Limits and API Quotas: Google Sheets API has rate limits and quotas, which might affect large-scale automation. For example, writing or reading a large amount of data repeatedly in a short amount of time could trigger rate limits, causing delays or test failures. To mitigate this, it is important to handle retries, introduce delays between requests, and monitor API usage closely to stay within the allocated quota.
-Complex User Interactions: Automating certain user interactions in Google Sheets, like drag-and-drop actions or complex formatting, may not always be reliable with Selenium. Although Selenium is capable of performing most interactions, certain intricate operations like formula manipulations and data linking between sheets may not always function as expected, leading to occasional test failures. In such cases, leveraging the Google Sheets API for direct data manipulation is a more reliable solution.
-Session Management: While the Chrome profile approach helps reuse login sessions, any changes in the Chrome browser (such as updates or profile corruption) can cause the login session to fail, which would require a fresh login each time. To avoid this, the Google Sheets API should be integrated where possible, as it doesn't require a logged-in browser session.
-
-2. Test Cases Automated and Pending Due to Time Constraints
-Due to time constraints, only 8 out of 10 test cases have been automated. The remaining two test cases involve working with large datasets, which require special handling. The following points outline the reasoning behind this:
-
-Large Data Handling: Two of the test cases involve dealing with large datasets, including verifying data integrity and the performance of Google Sheets with bulk data operations. These types of tests are more time-consuming to automate due to the following reasons:
-Test Performance: Running large datasets requires significant computational resources, and performance testing with such data might slow down the execution of tests. Furthermore, depending on the system used to run the tests, resource limitations could lead to test timeouts or failure.
-Data Integrity: Ensuring the correctness of data within large datasets involves multiple checks and cross-validations between the UI and the API. Automating these checks is complex because it requires both interaction with the sheet's UI and accessing backend data via the Google Sheets API to compare results.
-In a production environment, these test cases would need to be prioritized separately. Automation would likely require splitting the tests into smaller chunks, optimizing data processing, and employing parallel test execution for efficiency.
