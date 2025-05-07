@@ -16,29 +16,29 @@ This project automates functional test cases for **Google Sheets** using Seleniu
 
 ## ✅ Automated Test Cases (8/10 Implemented)
 
-### Test Case 1: Verify Google Sheet loads correctly
-- Checks if the sheet URL is accessible and page title matches expectations.
+### Test Case 1: Verify spreadsheet can be created
+- Verifies if a new spreadsheet can be created successfully by checking if the sheet URL is accessible and its title matches the expected value.
 
-### Test Case 2: Verify data can be entered in a cell
-- Uses Google Sheets API to input text in a specific cell.
+### Test Case 2: Verify spreadsheet can be renamed
+- Confirms the ability to rename a spreadsheet by using the Google Sheets API to input text in a specific cell and verifying the updated name.
 
-### Test Case 3: Verify data can be edited in a cell
-- Overwrites existing data in a cell and verifies the updated value.
+### Test Case 3: Verify data can be entered in a cell
+- Validates the ability to enter data into a specific cell by overwriting existing content and verifying that the new data is correctly updated.
 
-### Test Case 4: Verify data can be deleted from a cell
-- Clears the content of a specific cell using the Google Sheets API.
+### Test Case 4: Verify data can be edited in a cell
+- Tests the ability to edit data in a cell by clearing the content of a specified cell and confirming the updated value.
 
-### Test Case 5: Verify ability to add a new row
-- Simulates appending a new row of data and confirms via the API.
+### Test Case 5: Verify data can be deleted from a cell
+- Checks if data can be deleted from a specific cell by simulating appending a new row of data and confirming the update using the API.
 
-### Test Case 6: Verify ability to add a new column
-- Adds a column programmatically and validates by checking headers.
+### Test Case 6: Verify bold formatting on a cell
+- Ensures that bold formatting can be applied to a cell, verifying that the bold style is correctly set through the Google Sheets API.
 
-### Test Case 7: Verify data is retained after browser refresh
-- Enters data in the UI, refreshes the page, and checks persistence.
+### Test Case 7: Verify cell background color can be changed
+- Validates the ability to change the background color of a cell, entering data, refreshing the page, and checking for persistence of the updated background color.
 
-### Test Case 8: Verify unauthorized access is blocked
-- Opens the sheet URL in incognito or another profile and checks for auth error.
+### Test Case 8: Verify SUM formula
+- Confirms that a SUM formula is correctly applied in the Google Sheets document, ensuring that the formula calculates the correct sum of specified cells.
 
 ---
 
