@@ -38,7 +38,7 @@ public class TestCases extends BaseTest {
 	    }
 	}
 	
-	@Test(description = "Verify data can be entered in a cell using keyboard actions",priority=1)
+	@Test(description = "Verify data can be entered in a cell",priority=1)
 	public void testCase_2() {
 		try {
 	        String spreadsheetId = "1jxZE2j9cJbCsHlzHI0Gm8TVp5fMR_4ytd-q8za2BrCs"; 
@@ -83,7 +83,7 @@ public class TestCases extends BaseTest {
 	}
 	
 	@Test(description="Verify data can be deleted from a cell",priority=1)
-	public void testCase4_VerifyDataCanBeDeletedFromCell() throws IOException, GeneralSecurityException {
+	public void testCase_4() throws IOException, GeneralSecurityException {
         String spreadsheetId = "1jxZE2j9cJbCsHlzHI0Gm8TVp5fMR_4ytd-q8za2BrCs"; // replace with yours
 	    String range = "Sheet1!A1";
 
